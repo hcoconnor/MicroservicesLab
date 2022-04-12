@@ -63,7 +63,46 @@ function fetchProductList() {
 
 function fetchOneProduct($id) {
     // function body
+    // Daniel's contribution
+    var product;
+
+    $.ajax({
+        url: Url+'GetOneProduct',
+        type: 'get',
+        dataType: 'json',
+        data: {"product_id": $id},
+        contentType: 'text/plain',
+        success: function (data) {
+            product = '';
+            product =  '<div>'+
+                        '<div class="card card-inverse card-info" style="width:900px; height:auto">'+
+                            '<img class="card-img-top" src="'+data['data']['List'][0]['image']+'" style="width:300px">'+
+                            '<h2>'+data['data']['List'][0]['title'].substring(0,15)+'</h2>'+
+                            '<div class="rating">\n' +
+                                '<button class="btn btn-info" id="comment" onclick="fetchComments('+data['data']['List'][0]['id']+')">'+data['data']['List'][0]['comment_count']+' comments</button>\n' +
+                            '</div>\n' +
+                            '<div class="card-block">' +
+                                '<h4><span class="badge">CURRENT PRICE: '+data['data']['List'][0]['price']+'</span></h4>'+
+                                '<h4><span class="badge">SCREEN SIZE: '+data['data']['List'][0]['screen_size']+'</span></h4>'+
+                                '<h4><span class="badge">WEIGHT: '+data['data']['List'][0]['item_weight']+'</span></h4>'+
+                                '<h4><span class="badge">CAMERA: '+data['data']['List'][0]['camera_description']+'</span></h4>'+
+                                '<h4><span class="badge">OPERATING SYSTEM: '+data['data']['List'][0]['operating_system']+'</span></h4>'+
+                            '</div>'+  
+                            '<div class="rating">\n' +
+                                '<button class="btn btn-info" id="setComment" data-toggle="modal" data-target="#exampleModal" data-whatever='+data['data']['List'][0]['id']+'>Submit Comment</button>\n' +
+                            '</div>\n' +                                                     
+                        '</div>'+
+                        '</div>'
+
+            
+                        
+            $('#items').html(product);
+        }
+
+    })
+    
 }
+// end Daniel's contribution
 
 function fetchComments($id) {
     var comment;
