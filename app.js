@@ -76,8 +76,9 @@ function fetchOneProduct($id) {
             product = '';
             product =  '<div>'+
                         '<div class="card card-inverse card-info" style="width:900px; height:auto">'+
-                            '<img class="card-img-top" src="'+data['data']['List'][0]['image']+'" style="width:300px">'+
                             '<h2>'+data['data']['List'][0]['title'].substring(0,15)+'</h2>'+
+                            '<img class="card-img-top" src="'+data['data']['List'][0]['image']+'" style="width:300px">'+
+                            '<div>'+data['data']['List'][0]['title']+'</div>'+
                             '<div class="rating">\n' +
                                 '<button class="btn btn-info" id="comment" onclick="fetchComments('+data['data']['List'][0]['id']+')">'+data['data']['List'][0]['comment_count']+' comments</button>\n' +
                             '</div>\n' +
